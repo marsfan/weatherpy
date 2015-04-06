@@ -1,6 +1,6 @@
-import urllib2, json
+import urllib2, json, time
 
-apikey = "xxxxxxxxxxxxxxxx" #Enter the API key here, get one for free at wunderground.com/api
+apikey = "xxxxxxxxxxxxx" #Enter the API key here, get one for free at wunderground.com/api
 dataType = "Conditions"
 state = "TX"
 city = "Dallas"
@@ -16,10 +16,12 @@ settings = "lang:EN/pws:1/bestfct:1"
 #FORMAT is the output format of the file, is eather JSON or XML
 
 def getConditions():
-    request = urllib2.Request("http://api.wunderground.com/api/" + apikey + "/conditions/q/autoip.xml")
-    conditions = urllib2.urlopen(request)
-    print conditions
-    #TODO: Add extraction and labeling process
-
+    while True:
+        request = urllib2.Request("http://api.wunderground.com/api/" + apikey + "/conditions/q/autoip.json")
+        conditions = urllib2.urlopen(request)
+        parseddata = json.load(conditions)
+        #TODO: Add extraction and labeling process
+	print time.localtime()
+        time.sleep(180)
 
 getConditions()
