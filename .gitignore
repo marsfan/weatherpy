@@ -1,0 +1,4 @@
+#ignore api cfg file
+api.cfg
+#ignore gigignore test file
+test.txt
