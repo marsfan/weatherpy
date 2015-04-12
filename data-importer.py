@@ -1,6 +1,5 @@
 import requests, time
 
-#Enter the API key here, get one for free at wunderground.com/api
 #Wunderground also has a pretty good documentation on each request type and its results
 
 
