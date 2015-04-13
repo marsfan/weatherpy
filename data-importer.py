@@ -1,11 +1,12 @@
 #import the library to call and read the api, and the library to allow the program to wait.
 import requests, time
+from threading import Thread
 
 #Wunderground has a pretty good documentation on each request type and its results
 
 def getConditions():
     #make some variables global to allow accessing from other functions (this may be removed)
-    global apikey
+    global apikey, conditions
     #set the name of the file with the api key and open it. 
     apifile = open("api.cfg")
     #save api key to a variable
@@ -20,14 +21,25 @@ def getConditions():
         response = requests.get("http://api.wunderground.com/api/" + apikey + "/conditions/q/autoip.json")
         #read the json file from the request and save the data to conditions object
         conditions = response.json()
+	termTest()
         #TEST: print out the current tempature in f
-	print conditions['current_observation']['temp_f']
+	#print conditions['current_observation']['temp_f']
 	#wait for three minutes, change this if you have a better api plan and request more data. 
         time.sleep(180)
 #Run the get conditions function: This will be removed once I in
-getConditions()
+
 
 
 #TODO: Finish extraction process
 def getData(section, key):
-	return conditions['curr
+	return conditions[section][key]
+
+def termTest():
+	section = input("catagory: ")
+	key = input("key: ")
+	print getData(section, key)
+
+getConditions()
+term = Thread(target = termTest)
+term.daemon = True
+term.start()
