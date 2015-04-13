@@ -1,13 +1,12 @@
+#import the library to call and read the api, and the library to allow the program to wait.
 import requests, time
 
-#Wunderground also has a pretty good documentation on each request type and its results
-
-
+#Wunderground has a pretty good documentation on each request type and its results
 
 def getConditions():
-    #make some variables global to allow accessing from other functionschrom
+    #make some variables global to allow accessing from other functions (this may be removed)
     global apikey
-    #set the name of the file with the api key
+    #set the name of the file with the api key and open it. 
     apifile = open("api.cfg")
     #save api key to a variable
     apikey = apifile.read()
