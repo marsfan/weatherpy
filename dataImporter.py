@@ -1,6 +1,6 @@
 #import the library to call and read the api, and the library to allow the program to wait.
 import requests, time
-from threading
+import thread
 
 #Wunderground has a pretty good documentation on each request type and its results
 
@@ -34,8 +34,15 @@ def getData(section, key):
 	return conditions[section][key]
 
 #request data via the terminal
-#def termTest():
+def termTest():
 	section = input("catagory: ")
 	key = input("key: ")
 	print getData(section, key)
+try:
+    thread.start_new_thread(getConditions, ())
+    thread.start_new_thread(termTest, ())
+except:
+    print "Thread error"
 
+while 1:
+    pass
