@@ -6,7 +6,7 @@ import threading
 
 def getConditions():
     #make some variables global to allow accessing from other functions (this may be removed)
-    global apikey, conditions
+    global apikey
     global conditions
     #set the name of the file with the api key and open it. 
     apifile = open("api.cfg")
